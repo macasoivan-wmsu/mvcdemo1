@@ -41,13 +41,13 @@ namespace MvcDemo.Areas.Security.Controllers
             using (var db = new DatabaseContext())
             {
                 var users = from user in db.Users.ToList()
-                            select new UserModelView
+                            select new UserViewModel
                 {
-                    Id = user.Id,
-                    Name = user.Name,
+                    Id=user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
                     Age = user.Age,
                     Gender = user.Gender
-
                 };
 
                 return View(Users);
