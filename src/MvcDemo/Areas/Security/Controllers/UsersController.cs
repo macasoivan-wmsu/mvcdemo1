@@ -38,7 +38,7 @@ namespace MvcDemo.Areas.Security.Controllers
         public ActionResult Index()
         {
 
-
+           
             return View(Users);
         }
 
