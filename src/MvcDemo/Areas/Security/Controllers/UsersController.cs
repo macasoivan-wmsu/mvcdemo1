@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcDemo.dal;
 
 namespace MvcDemo.Areas.Security.Controllers
 {
@@ -37,11 +38,21 @@ namespace MvcDemo.Areas.Security.Controllers
         }
         public ActionResult Index()
         {
+            using (var db = new DatabaseContext())
+            {
+                var users = from user in db.Users.ToList()
+                            select new UserModelView
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Age = user.Age,
+                    Gender = user.Gender
 
-           
-            return View(Users);
+                };
+
+                return View(Users);
+            }
         }
-
         // GET: Security/Users/Details/5
         public ActionResult Details(Guid id, UserViewModel viewModel)
         {
